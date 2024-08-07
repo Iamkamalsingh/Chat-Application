@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Loop</string>
+    <string name="loop_messanger">Loop Messanger</string>
+    <string name="from">From</string>
+    <string name="kamal_singh">Kamal Singh</string>
+    <string name="login">Login</string>
+    <string name="sign_in_to_continue">Sign in to continue.</string>
+    <string name="email">EMAIL</string>
+    <string name="password">PASSWORD</string>
+    <string name="enter_email">Email</string>
+    <string name="enter_password">Password</string>
+    <string name="need_an_account">Need an account?</string>
+    <string name="sign_up">SIGN UP!</string>
+    <string name="login_enter">LOGIN</string>
+    <string name="create_a_new">Create a New</string>
+    <string name="account">Account</string>
+    <string name="re_enter_password">RE-Enter PASSWORD</string>
+    <string name="username">UserName</string>
+</resources>

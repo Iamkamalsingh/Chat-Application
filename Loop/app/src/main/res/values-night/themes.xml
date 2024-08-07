@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.LooP" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+
+
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorSecondary">@color/colorSecondary</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+        <!-- Other theme attributes -->
+
+
+            <color name="backgroundColor">#121212</color> <!-- Dark Gray -->
+            <color name="toolbarColor">#004D40</color> <!-- Dark Teal -->
+            <color name="toolbarTextColor">#FFFFFF</color> <!-- White -->
+            <color name="textColor">#FFFFFF</color> <!-- White -->
+            <color name="buttonColor">#004D40</color> <!-- Dark Teal -->
+            <color name="buttonTextColor">#FFFFFF</color> <!-- White -->
+
+
+    </style>
+</resources>

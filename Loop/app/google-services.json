@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "768012178872",
+    "project_id": "loop-a846a",
+    "storage_bucket": "loop-a846a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768012178872:android:c20404fb4cd4dd45b1eb4d",
+        "android_client_info": {
+          "package_name": "com.singhkamal.loop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBG9y8V73UKHYEizS7Ed4Oi8iVFI-OqL0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
