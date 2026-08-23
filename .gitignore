@@ -1,0 +1,39 @@
+# ============================================================
+#  Root-level .gitignore for Chat-Application (Android + CI/CD)
+# ============================================================
+
+# ----- Android build outputs -----
+/Loop/build/
+/Loop/app/build/
+/Loop/.gradle/
+/Loop/local.properties
+
+# ----- Gradle wrapper cache -----
+!Loop/gradle/wrapper/gradle-wrapper.jar
+
+# ----- JVM crash & replay logs (never commit these) -----
+hs_err_pid*.log
+replay_pid*.log
+Loop/hs_err_pid*.log
+Loop/replay_pid*.log
+
+# ----- Firebase secrets (injected by Jenkins at build time) -----
+Loop/app/google-services.json
+google-services.json
+
+# ----- IDE files -----
+*.iml
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# ----- OS generated -----
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ----- Captured profiling data -----
+/Loop/captures/
+.externalNativeBuild/
+.cxx/
