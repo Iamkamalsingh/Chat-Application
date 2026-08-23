@@ -6,7 +6,7 @@ pipeline {
     }
 
     environment {
-        ANDROID_HOME = 'C:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk'
+        ANDROID_HOME     = 'C:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk'
         ANDROID_SDK_ROOT = 'C:\\Users\\ASUS\\AppData\\Local\\Android\\Sdk'
     }
 
@@ -18,24 +18,52 @@ pipeline {
             }
         }
 
+        stage('Inject google-services.json') {
+            steps {
+                // Copies Firebase config from Jenkins Secret File credential.
+                // Setup: Manage Jenkins -> Credentials -> Global -> Add Credentials
+                //        Kind: Secret file  |  ID: google-services-json
+                withCredentials([file(credentialsId: 'google-services-json',
+                                      variable: 'GOOGLE_SERVICES')]) {
+                    bat 'copy /Y "%GOOGLE_SERVICES%" "Loop\\app\\google-services.json"'
+                }
+            }
+        }
+
         stage('Check Environment') {
             steps {
-                bat 'java -version'
-                bat 'gradlew.bat --version'
+                dir('Loop') {
+                    bat 'java -version'
+                    bat 'gradlew.bat --version'
+                }
             }
         }
 
         stage('Build Debug APK') {
             steps {
-                bat 'gradlew.bat clean assembleDebug'
+                dir('Loop') {
+                    bat 'gradlew.bat clean assembleDebug'
+                }
             }
         }
 
         stage('Archive APK') {
             steps {
-                archiveArtifacts artifacts: 'app/build/outputs/apk/debug/*.apk',
+                archiveArtifacts artifacts: 'Loop/app/build/outputs/apk/debug/*.apk',
                     fingerprint: true
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'BUILD SUCCESSFUL - APK is archived as a build artifact.'
+        }
+        failure {
+            echo 'BUILD FAILED - Check console output above for details.'
+        }
+        always {
+            cleanWs()
         }
     }
 }
