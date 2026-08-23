@@ -20,9 +20,9 @@ pipeline {
 
         stage('Inject google-services.json') {
             steps {
-                // Copy the Firebase config file from Jenkins credentials into the app module.
-                // In Jenkins: Manage Jenkins → Credentials → Add "Secret File"
-                //             with ID = "google-services-json"
+                // Copies Firebase config from Jenkins Secret File credential.
+                // Setup: Manage Jenkins -> Credentials -> Global -> Add Credentials
+                //        Kind: Secret file  |  ID: google-services-json
                 withCredentials([file(credentialsId: 'google-services-json',
                                       variable: 'GOOGLE_SERVICES')]) {
                     bat 'copy /Y "%GOOGLE_SERVICES%" "Loop\\app\\google-services.json"'
@@ -57,13 +57,12 @@ pipeline {
 
     post {
         success {
-            echo '✅ Build successful! APK is archived.'
+            echo 'BUILD SUCCESSFUL - APK is archived as a build artifact.'
         }
         failure {
-            echo '❌ Build failed. Check the console output above.'
+            echo 'BUILD FAILED - Check console output above for details.'
         }
         always {
-            // Clean workspace to avoid stale files between builds
             cleanWs()
         }
     }
