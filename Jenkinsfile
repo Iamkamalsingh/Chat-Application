@@ -20,12 +20,29 @@ pipeline {
 
         stage('Inject google-services.json') {
             steps {
-                // Copies Firebase config from Jenkins Secret File credential.
-                // Setup: Manage Jenkins -> Credentials -> Global -> Add Credentials
-                //        Kind: Secret file  |  ID: google-services-json
-                withCredentials([file(credentialsId: 'google-services-json',
-                                      variable: 'GOOGLE_SERVICES')]) {
-                    bat 'copy /Y "%GOOGLE_SERVICES%" "Loop\\app\\google-services.json"'
+                script {
+                    try {
+                        withCredentials([file(credentialsId: 'google-services-json',
+                                              variable: 'GOOGLE_SERVICES')]) {
+                            bat 'copy /Y "%GOOGLE_SERVICES%" "Loop\\app\\google-services.json"'
+                            echo 'google-services.json injected successfully.'
+                        }
+                    } catch (Exception e) {
+                        error("""
+====================================================================
+  MISSING CREDENTIAL: google-services-json
+====================================================================
+  The Firebase config file was not found in Jenkins credentials.
+
+  To fix this:
+  1. Go to: Manage Jenkins -> Credentials -> Global -> Add Credentials
+  2. Kind      : Secret file
+  3. ID        : google-services-json        (must match exactly)
+  4. File      : Upload your google-services.json from Firebase Console
+  5. Click Save, then re-run this build.
+====================================================================
+                        """)
+                    }
                 }
             }
         }
